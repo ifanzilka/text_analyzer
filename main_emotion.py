@@ -133,8 +133,10 @@ class EmotitonAnalyzer:
         top_users = self.find_top_user(dict_stats)
 
 
-        print(person_info)
-        print(top_users)
+        #print(person_info)
+        #print(top_users)
+
+        return person_info, top_users
 
 
 

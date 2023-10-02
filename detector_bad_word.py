@@ -102,7 +102,8 @@ class BadThemeAnalyzer:
             if  cnt_dialog_user[name] / len(dict_person[name]) < self.MAGIC_NUM_BAD:
                 bad_person.append({"name":name, "bad_theme":dict_person[name]})
 
-        return new_string, bad_person
+        #return new_string, bad_person
+        return {"new_string": new_string, "bad_person":bad_person}
 
 
 

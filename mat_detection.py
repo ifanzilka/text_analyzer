@@ -1,3 +1,6 @@
+from scripts.parsing import read_file_txt
+
+
 class RussianMatDetect:
 
     def __init__(self, path_bad_word = "./utils/russian_mat.txt"):
@@ -51,12 +54,63 @@ class RussianMatDetect:
         return False
 
 
+class ClearMatJazz:
+
+    def __init__(self):
+        self.detector_mat = RussianMatDetect()
+
+
+    def parse_dialog(self, text):
+        new_txt = ""
+        words = text.split(" ")
+
+        for word in words:
+            res = self.detector_mat.check_mat_word(word)
+
+            if res:
+                new_txt += "*" * len(word)
+            else:
+                new_txt += word
+            new_txt += " "
+        return new_txt
+
+
+    def clear_file(self, filename):
+
+        string = read_file_txt(filename)
+
+        new_string = ""
+
+        string_list = string.split("\n")
+        for line in string_list:
+            line = line.strip()
+            splitting = line.split(":")
+
+            
+            if len(splitting) > 2:
+
+
+                name = splitting[2].split("-")[1]
+                name = name.split(" ")[1]
+
+                text_user = splitting[3]
+                
+                text_preprocc = self.parse_dialog(text_user)
+                new_str = f"{splitting[0]}:{splitting[1]}:{splitting[2]}:{text_preprocc}"
+                
+                new_string += new_str + "\n"
+        return new_string
+
 
 if __name__ == "__main__":
     
     RMD = RussianMatDetect()
-
     RMD.check_mat_word("блядь")
+
+    RUsMat = ClearMatJazz()
+
+    new = RUsMat.clear_file("./example_conf/first.txt")
+    print(new)
     
 
         
