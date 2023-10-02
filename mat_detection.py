@@ -60,6 +60,7 @@ class ClearMatJazz:
         self.detector_mat = RussianMatDetect()
 
 
+        
     def parse_dialog(self, text):
         new_txt = ""
         words = text.split(" ")
