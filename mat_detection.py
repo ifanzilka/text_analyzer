@@ -1,6 +1,6 @@
 class RussianMatDetect:
 
-    def __init__(self, path_bad_word = "russian_mat.txt"):
+    def __init__(self, path_bad_word = "./utils/russian_mat.txt"):
 
         self.bad_word = self.read_file_mat(path_bad_word)
         #print(self.bad_word)

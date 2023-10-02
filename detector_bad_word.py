@@ -3,7 +3,7 @@ import torch
 import numpy as np
 import json
 
-with open("id2topic.json") as f:
+with open("./utilsid2topic.json") as f:
     target_vaiables_id2topic_dict = json.load(f)
 
 
@@ -47,6 +47,12 @@ class BadThemeAnalyzer:
         preds = self.adjust_multilabel(model_output['logits'], is_pred = True)
 
         return preds
+
+
+    def file_analyz(self, path_file):
+        string = read_file_txt(path_file)
+
+        return self.string_text_to_text(string)
 
     ## фугкция для анализа всей стенограммы и его очистка
     def string_text_to_text(self, string):
@@ -95,8 +101,6 @@ class BadThemeAnalyzer:
         for name in dict_person:
             if  cnt_dialog_user[name] / len(dict_person[name]) < self.MAGIC_NUM_BAD:
                 bad_person.append({"name":name, "bad_theme":dict_person[name]})
-        #print(new_string)
-        #print(bad_person)
 
         return new_string, bad_person
 
@@ -105,8 +109,8 @@ class BadThemeAnalyzer:
 ## убрать запрещенные темы и в конце вижимка кто про это говорил
 
 if __name__ == "__main__":
-    file1 = "first.txt"
-    file2 = "bad_theme.txt"
+    file1 = "./example_conf/first.txt"
+    file2 = "./example_conf/bad_theme.txt"
 
     string = read_file_txt(file2)
     #text_proccesing_bad_word(string)

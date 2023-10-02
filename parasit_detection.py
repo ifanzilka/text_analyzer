@@ -1,6 +1,6 @@
 class RussianParazitWordDetect:
 
-    def __init__(self, path_bad_word = "russian_parazit.txt"):
+    def __init__(self, path_bad_word = "./utils/russian_parazit.txt"):
 
         self.bad_word = self.read_file_parazit(path_bad_word)
         #print(self.bad_word)
