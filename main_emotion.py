@@ -114,6 +114,11 @@ class EmotitonAnalyzer:
 
         return {"top_user_postive": top_user_postive, "top_value_postive": top_value_postive, "top_user_negative": top_user_negative, "top_value_negative": top_value_negative}
 
+
+    def file2info(self, filename):
+        string = read_file_txt(filename)
+
+        return self.string2info(string)
     def string2info(self, string):
         dict_person = _parising_text_to_user(string)
         dict_stats = {}
@@ -133,8 +138,8 @@ class EmotitonAnalyzer:
         top_users = self.find_top_user(dict_stats)
 
 
-        #print(person_info)
-        #print(top_users)
+        # print(person_info)
+        # print(top_users)
 
         return person_info, top_users
 
